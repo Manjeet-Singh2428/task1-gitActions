@@ -24,3 +24,6 @@ jobs:
     - name: Run tests
       run: |
         python -m unittest discover
+
+    - name: my-step
+      run: echo "Hello World!"    
