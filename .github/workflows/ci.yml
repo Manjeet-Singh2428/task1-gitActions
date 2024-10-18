@@ -1,13 +1,43 @@
 name: CI
 
-on: 
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# on: 
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
+
+on:
+  workflow_dispatch:
+    inputs:
+      namespace:
+        description: 'this is of eks hpa task'
+        required: true
+        default: 'default'
+        type: string
+      node-min-size:
+        description: 'min size of node'
+        required: true
+        default: '1' 
+        type: string
+      node-max-size:
+        description: 'max size of node'
+        required: true
+        default: '10' 
+        type: string
+      hpa-min-size:
+        description: 'hpa min size'
+        required: true
+        default: '2'
+        type: string
+      hpa-max-size:
+        description: 'hpa max size'
+        required: true
+        default: '10'
+        type: string
+        
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -26,4 +56,4 @@ jobs:
         python -m unittest discover
 
     - name: my-step
-      run: echo "Hello World!"    
+      run: echo "Hello World!" 
